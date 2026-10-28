@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+/* Sky Space Realty design tokens — primary colour sampled from the brand logo (#0C84B8). */
+@theme {
+  --color-brand-50: #eef8fc;
+  --color-brand-100: #d5eef8;
+  --color-brand-200: #aedcef;
+  --color-brand-300: #78c4e3;
+  --color-brand-400: #3ea6d2;
+  --color-brand-500: #1893c6;
+  --color-brand-600: #0c84b8;
+  --color-brand-700: #0b6a94;
+  --color-brand-800: #0e5778;
+  --color-brand-900: #114963;
+  --color-brand-950: #0b2f42;
+  --color-accent-500: #f59e0b;
+  --color-ink: #0f2533;
+  --color-muted: #5b6b76;
+  --color-line: #e3e9ed;
+  --color-surface: #f6f9fb;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --radius-card: 1rem;
+  --shadow-card: 0 1px 2px rgb(15 37 51 / 0.04), 0 4px 16px rgb(15 37 51 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(15 37 51 / 0.05), 0 12px 32px rgb(15 37 51 / 0.12);
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white text-ink antialiased; font-feature-settings: 'cv11', 'ss01'; }
+  h1, h2, h3, h4 { @apply font-display text-ink; letter-spacing: -0.01em; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-brand-600; }
+  ::selection { @apply bg-brand-100 text-brand-900; }
+}
+
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .card { @apply rounded-[var(--radius-card)] border border-line bg-white shadow-[var(--shadow-card)]; }
+  .label { @apply mb-1.5 block text-sm font-medium text-ink; }
+  .field {
+    @apply block w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink placeholder:text-muted/70
+      transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100 focus:outline-none disabled:cursor-not-allowed disabled:bg-surface;
+  }
+  .field[aria-invalid='true'] { @apply border-red-500 focus:ring-red-100; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border border-line bg-white px-3 py-1.5 text-sm text-ink transition hover:border-brand-400; }
+  .chip[aria-pressed='true'] { @apply border-brand-600 bg-brand-50 text-brand-800; }
+  .prose-plain p { @apply mb-4 leading-relaxed text-ink/90; }
+}
+
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+.skeleton { position: relative; overflow: hidden; background: #eef2f5; }
+.skeleton::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.6), transparent); animation: shimmer 1.4s infinite; }
+@media (prefers-reduced-motion: reduce) { .skeleton::after { animation: none; } * { scroll-behavior: auto !important; } }

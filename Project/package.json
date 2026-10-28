@@ -1,0 +1,22 @@
+{
+  "name": "sky-space-realty",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Sky Space Realty — Indian residential & commercial real estate platform",
+  "workspaces": ["packages/*", "apps/*"],
+  "engines": { "node": ">=20.11" },
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w @skyspace/api\" \"npm run dev -w @skyspace/web\"",
+    "dev:db": "npm run memdb -w @skyspace/api",
+    "seed": "npm run seed -w @skyspace/api",
+    "build": "npm run build -w @skyspace/api && npm run build -w @skyspace/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:e2e": "npm run test:e2e -w @skyspace/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "typescript": "5.9.3"
+  }
+}

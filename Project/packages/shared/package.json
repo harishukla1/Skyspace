@@ -1,0 +1,14 @@
+{
+  "name": "@skyspace/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared constants, types, Zod validation schemas, permission matrix and formatting utilities",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": { "zod": "3.25.76" },
+  "devDependencies": { "vitest": "3.2.7" }
+}
